@@ -1,11 +1,3 @@
-var USER_DATA = {
-  name: 'Andrew Furth',
-  username: 'afurth89',
-  image: 'https://avatars3.githubusercontent.com/u/12887095?v=3&s=460'
-}
-
-var React = require('react')
-var ReactDOM = require('react-dom')
 
 // React render method
 // fn(data) = View
@@ -18,53 +10,51 @@ var ReactDOM = require('react-dom')
   Testable
 */
 
-var ProfileLink = React.createClass({
-  render: function () {
-    return (
-      <div>
-        <a href={'https://www.github.com/' + this.props.username}>
-          {this.props.username}
-        </a>
-      </div>
-    )
-  }
-});
+/*
+{this.props.children} is whatever is in between
+the acutal opening and closing of the component
+(see <Link> component below, where {this.props.username}
+is in between the opening and closing of the <Link> tag
+and thus is equal to {this.props.children} for the <Link>
+tag)
+*/
 
-var ProfileName = React.createClass({
-  render: function() {
-    return (
-      <div>{this.props.name}</div>
-    )
-  }
-});
+// var Link = React.createClass({
+//   changeURL: function () {
+//     window.location.replace(this.props.href)
+//   },
 
-var ProfilePic = React.createClass({
-  render: function () {
-    return <img src={this.props.imageUrl} style={{height: 100, width: 100}}></img>
-  }
-});
+//   render: function() {
+//     return (
+//       <span 
+//         style={{color: 'blue', cursor: 'pointer'}}
+//         onClick={this.changeURL}>
+//         {this.props.children}
+//       </span>
+//     )
+//   }
+// })
 
-var Avatar = React.createClass({
-  render: function () {
-    return (
-      <div>
-        <ProfilePic imageUrl={this.props.user.image}/>
-        <ProfileName name={this.props.user.name}/>
-        <ProfileLink username={this.props.user.username}/>
-      </div>
-    )
-  }
-});
-
+// var ProfileLink = React.createClass({
+//   render: function () {
+//     return (
+//       <div>
+//         <Link href={'https://www.github.com/' + this.props.username}>
+//           {this.props.username}
+//         </Link>
+//       </div>
+//     )
+//   }
+// });
 
 
-
-
-
+var React = require('react')
+var ReactDOM = require('react-dom')
+var routes = require('./config/routes')
 
 
 
 ReactDOM.render(
-  <Avatar user={USER_DATA}/>,
+  routes,
   document.getElementById('app')
 )
