@@ -1,0 +1,53 @@
+var React = require('react')
+var PropTypes = React.PropTypes
+var transparentBg = require('../styles').transparentBg
+
+// 'Presentational' components are usually responsible for:
+  // Rendering the UI
+
+// They are generally NOT responsible for:
+  // STATE and 
+  // ROUTING
+  // (i.e. the logic)
+  
+// Functional Stateless Components
+  // because there is no state to manage in this component
+  // it is in effect like a "pure" function and as such can just
+  // be written as a function with 'props' passed in as an argument
+function Prompt (props) {
+  return (
+    <div className="jumbotron col-sm-6 col-sm-offset-3 text-center" style={transparentBg}>
+      <h1>{props.header}</h1>
+      <div className="col-sm-12">
+        <form onSubmit={props.onSubmitUser}>
+          <div className="form-group">
+            <input 
+              className="form-control"
+              placeholder="GitHub username"
+              onChange={props.onUpdateUser}
+              value={props.username}
+              type="text"/>
+          </div>
+          <div className="form-group col-sm-4 col-sm-offset-4">
+            <button
+              className="btn btn-block btn-success">
+                Continue
+            </button>
+          </div>
+        </form>
+      </div>
+    </div>
+  )
+}
+
+// Serves two purposes
+  // 1. Provides error checking (as rendering will fail is PropTypes aren't correct)
+  // 2. Documentation - So other devs can more easily understand your code
+Prompt.PropTypes = {
+  onSubmitUser: PropTypes.func.isRequired,
+  onUpdateUser: PropTypes.func.isRequired,
+  header: PropTypes.string.isRequired,
+  username: PropTypes.string.isRequired
+}
+
+module.exports = Prompt
